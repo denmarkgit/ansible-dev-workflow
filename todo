@@ -1,0 +1,19 @@
+# automating dev environment
+
+
+# limitation
+-does not include window management config like i3
+-only for terminal setup in ubuntu
+
+# apps used
+
+1. curl
+-install
+
+2. wget
+-install
+
+3. zsh
+-install
+-make zsh default shell
+-install zap plugin manager
