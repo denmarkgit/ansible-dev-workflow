@@ -6,12 +6,7 @@
 -only for terminal setup in ubuntu
 
 # apps used
-
-1. curl
--install
-
-2. wget
--install
+-curl
 
 3. zsh
 -install
