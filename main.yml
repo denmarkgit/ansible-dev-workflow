@@ -8,3 +8,7 @@
   pre_tasks:
     - debug: 
         msg: 'This is a test'
+
+  tasks:
+
+    - import_tasks: tasks/apps.yml
