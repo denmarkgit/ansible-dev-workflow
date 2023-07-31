@@ -1,4 +1,7 @@
 ---
 - name: ensure apps are installed
-  debug:
-    msg: "this is apps.yml play"
+  apt:
+    pkg:
+      - wget
+      - curl
+      - tmux

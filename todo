@@ -7,6 +7,8 @@
 
 # apps used
 -curl
+-wget
+-git
 
 3. zsh
 -install
