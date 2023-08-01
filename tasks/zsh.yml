@@ -8,9 +8,15 @@
     chsh -s $(which zsh) vagrant
     touch .zsh
 
+- name: check for zap binaries
+  become: false
+  command: cat $HOME/.local/share/zap/zap.zsh
+  register: zap_result
+
 - name: Install zap
   become: false
   shell: zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
   args:
     executable: /usr/bin/zsh
+  when: zap_result is failed
     
