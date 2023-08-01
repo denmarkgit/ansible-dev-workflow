@@ -1,4 +1,10 @@
 ---
-- name: Install the package "foo"
+- name: Install zsh
   apt:
     name: zsh
+
+- name: Make zsh the default shell
+  shell: |
+    chsh -s $(which zsh) vagrant
+    touch .zsh
+    
