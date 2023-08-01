@@ -12,6 +12,7 @@
   become: false
   command: cat $HOME/.local/share/zap/zap.zsh
   register: zap_result
+  ignore_errors: true
 
 - name: Install zap
   become: false
