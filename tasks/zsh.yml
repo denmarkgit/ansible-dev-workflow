@@ -3,6 +3,13 @@
   apt:
     name: zsh
 
+- name: Check if zsh is the default shell
+  shell: which $SHELL
+  register: current_shell
+
+- debug:
+    var: current_shell
+
 - name: Make zsh the default shell
   shell: |
     chsh -s $(which zsh) vagrant
@@ -13,6 +20,7 @@
   command: cat $HOME/.local/share/zap/zap.zsh
   register: zap_result
   ignore_errors: true
+  changed_when: false
 
 - name: Install zap
   become: false
