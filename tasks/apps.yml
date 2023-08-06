@@ -5,3 +5,5 @@
       - wget
       - curl
       - tmux
+      - stow
+    update_cache: true

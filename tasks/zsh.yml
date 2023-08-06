@@ -4,8 +4,9 @@
     name: zsh
 
 - name: Check if zsh is the default shell
-  shell: which $SHELL
+  shell: cat /etc/passwd | grep vagrant
   register: current_shell
+  changed_when: false
 
 - debug:
     var: current_shell
@@ -14,6 +15,7 @@
   shell: |
     chsh -s $(which zsh) vagrant
     touch .zsh
+  when: '"/usr/bin/zsh" not in current_shell.stdout'
 
 - name: check for zap binaries
   become: false

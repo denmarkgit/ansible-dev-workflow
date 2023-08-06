@@ -6,6 +6,12 @@
   vars_files:
     - default.config.yml
 
+  pre_tasks:
+    - name: update apt repo 
+      apt:
+        update_cache: true
+        cache_valid_time: 86400 # 1 day
+
 
   tasks:
 
