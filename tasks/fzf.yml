@@ -1,5 +1,19 @@
 ---
-- name: install fzf
-  apt:
-    name: fzf
-    state: present
+- name: fetch fzf from github
+  become: false
+  git:
+    repo: 'https://github.com/junegunn/fzf.git'
+    dest: $HOME/fzf
+    version: HEAD # latest
+
+- name: check for fzf bin
+  become: false
+  shell: |
+    cat $HOME/fzf/bin/fzf
+  register: fzf_result
+  ignore_errors: true
+
+- name: Run install script
+  become: false
+  shell: $HOME/fzf/install --key-bindings --completion --update-rc
+  when: fzf_result is failed
