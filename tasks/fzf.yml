@@ -11,6 +11,7 @@
   shell: |
     cat $HOME/fzf/bin/fzf
   register: fzf_result
+  changed_when: false
   ignore_errors: true
 
 - name: Run install script

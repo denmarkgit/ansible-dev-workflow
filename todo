@@ -9,6 +9,7 @@
 -curl
 -wget
 -git
+-stow
 
 3. zsh
 -install
