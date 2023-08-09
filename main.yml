@@ -16,6 +16,6 @@
   tasks:
 
     - import_tasks: tasks/apps.yml
+    - import_tasks: tasks/stow.yml
     - import_tasks: tasks/zsh.yml
     - import_tasks: tasks/fzf.yml
-    - import_tasks: tasks/stow.yml

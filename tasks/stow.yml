@@ -5,3 +5,4 @@
     repo: https://github.com/denmarkgit/.dotfiles
     dest: $HOME/.dotfiles
     version: master
+    update: true
