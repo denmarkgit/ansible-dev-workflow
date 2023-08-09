@@ -20,24 +20,18 @@
     path: $HOME/.local/share/zap/zap.zsh
   register: zap_bin
 
-- debug:
-    var: zap_bin
-
 - name: Install zap
   become: false
   shell: zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
   args:
     executable: /usr/bin/zsh
-  when: not zap_result.stats.exists
+  when: not zap_bin.stat.exists
 
 - name: Check if zshrc is a link file
   become: false
   stat:
     path: $HOME/.zshrc
   register: zshrc_config
-
-- debug:
-    var: zshrc_config
 
 - name: Backup zshrc
   become: false
@@ -60,4 +54,3 @@
     cd ~/.dotfiles
     stow zsh
   when: not zshrc_config.stat.islnk
-  
