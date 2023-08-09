@@ -8,13 +8,11 @@
 
 - name: check for fzf bin
   become: false
-  shell: |
-    cat $HOME/fzf/bin/fzf
+  stat:
+    path: $HOME/fzf/bin/fzf
   register: fzf_result
-  changed_when: false
-  ignore_errors: true
 
 - name: Run install script
   become: false
   shell: $HOME/fzf/install --key-bindings --completion --update-rc
-  when: fzf_result is failed
+  when: not fzf_result.stat.exists

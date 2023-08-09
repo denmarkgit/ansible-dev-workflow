@@ -1,19 +1,7 @@
 ---
-- name: check if dotfiles exists
-  become: false
-  stat:
-    path: $HOME/.dotfiles
-  register: dotfiles_folder
-
-- debug:
-    var: dotfiles_folder
-
-
 - name: Clone dotfiles
   become: false
   ansible.builtin.git:
     repo: https://github.com/denmarkgit/.dotfiles
     dest: $HOME/.dotfiles
-    single_branch: yes
     version: master
-  when: dotfiles_folder is failed
