@@ -8,9 +8,6 @@
   register: current_shell
   changed_when: false
 
-- debug:
-    var: current_shell
-
 - name: Make zsh the default shell
   shell: |
     chsh -s $(which zsh) vagrant
@@ -19,17 +16,19 @@
 
 - name: check for zap binaries
   become: false
-  command: cat $HOME/.local/share/zap/zap.zsh
-  register: zap_result
-  ignore_errors: true
-  changed_when: false
+  stat:
+    path: $HOME/.local/share/zap/zap.zsh
+  register: zap_bin
+
+- debug:
+    var: zap_bin
 
 - name: Install zap
   become: false
   shell: zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
   args:
     executable: /usr/bin/zsh
-  when: zap_result is failed
+  when: not zap_result.stats.exists
 
 - name: Check if zshrc is a link file
   become: false
