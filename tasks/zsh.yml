@@ -30,4 +30,10 @@
   args:
     executable: /usr/bin/zsh
   when: zap_result is failed
-    
+
+- name: Backup zshrc
+  become: false
+  copy:
+    src: $HOME/.zshrc
+    dest: $HOME/.zshrc.BAK
+    remote_src: true
