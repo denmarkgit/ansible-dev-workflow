@@ -1,0 +1,13 @@
+---
+- name: stow scripts
+  stat:
+    path: $HOME/.local/scripts/deploy.sh
+  register: stow_scripts
+
+- name: stow scripts
+  become: false
+  shell: |
+    mkdir -p $HOME/.local/scripts/
+    cd ~/.dotfiles
+    stow scripts
+  when: not stow_scripts.stat.exists
