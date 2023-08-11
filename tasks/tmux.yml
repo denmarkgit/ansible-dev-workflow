@@ -1,0 +1,16 @@
+---
+- name: Check if tmux.conf exists
+  become: false
+  stat:
+    path: $HOME/.tmux.conf
+  register: tmux_conf
+
+- debug:
+    var: tmux_conf
+
+- name: stow tmux.conf
+  become: false
+  shell: |
+    cd $HOME/.dotfiles
+    stow tmux
+  when: not tmux_conf.stat.exists
