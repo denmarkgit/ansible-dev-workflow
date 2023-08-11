@@ -1,0 +1,5 @@
+---
+- name: remove vim
+  apt:
+    name: vim
+    state: absent

@@ -5,9 +5,6 @@
     path: $HOME/.tmux.conf
   register: tmux_conf
 
-- debug:
-    var: tmux_conf
-
 - name: stow tmux.conf
   become: false
   shell: |
