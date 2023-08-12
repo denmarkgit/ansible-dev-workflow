@@ -1,5 +1,6 @@
 ---
-- name: stow scripts
+- name: check if scripts exists
+  become: false
   stat:
     path: $HOME/.local/scripts/deploy.sh
   register: stow_scripts

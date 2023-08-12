@@ -3,3 +3,36 @@
   apt:
     name: vim
     state: absent
+
+
+- name: Add neovim ppa 
+  apt_repository: 
+    repo: ppa:neovim-ppa/stable
+    state: present
+
+- name: Install neovim from ppa
+  apt: 
+    name: neovim
+    state: present
+
+- name: instal vim plug
+  become: false
+  command: |
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+- name: create nvim directory
+  become: false
+  file: 
+    path: $HOME/.config/nvim
+    state: directory
+
+- name: stow nvim
+  become: false
+  shell: |
+    cd $HOME/.dotfiles
+    stow nvim
+
+
+
+
