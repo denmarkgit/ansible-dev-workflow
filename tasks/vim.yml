@@ -4,7 +4,6 @@
     name: vim
     state: absent
 
-
 - name: Add neovim ppa 
   apt_repository: 
     repo: ppa:neovim-ppa/stable
@@ -15,11 +14,11 @@
     name: neovim
     state: present
 
-- name: instal vim plug
-  become: false
-  command: |
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      # - name: instal vim plug
+      #   become: false
+      #   command: |
+      #     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      #     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 - name: create nvim directory
   become: false
@@ -27,12 +26,15 @@
     path: $HOME/.config/nvim
     state: directory
 
+- name: Check if init config is a link
+  become: false
+  stat:
+    path: $HOME/.config/nvim/init.vim
+  register: vim_config
+
 - name: stow nvim
   become: false
   shell: |
     cd $HOME/.dotfiles
     stow nvim
-
-
-
-
+  when: not vim_config.stat.exists
