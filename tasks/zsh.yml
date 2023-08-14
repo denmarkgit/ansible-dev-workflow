@@ -9,9 +9,14 @@
   register: current_shell
   changed_when: false
 
+- name: Current user
+  become: false
+  shell: whoami
+  register: current_user
+
 - name: Make zsh the default shell
   shell: |
-    chsh -s $(which zsh) $HOME
+    chsh -s $(which zsh) {{ current_user.stdout }}
     touch .zsh
   when: '"/usr/bin/zsh" not in current_shell.stdout'
 
