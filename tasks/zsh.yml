@@ -4,7 +4,8 @@
     name: zsh
 
 - name: Check if zsh is the default shell
-  shell: cat /etc/passwd | grep vagrant
+  become: false
+  shell: cat /etc/passwd | grep $HOME
   register: current_shell
   changed_when: false
 
