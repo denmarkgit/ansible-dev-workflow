@@ -13,6 +13,7 @@
   become: false
   shell: whoami
   register: current_user
+  changed_when: false
 
 - name: Make zsh the default shell
   shell: |
