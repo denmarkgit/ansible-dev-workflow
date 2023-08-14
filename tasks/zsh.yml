@@ -11,7 +11,7 @@
 
 - name: Make zsh the default shell
   shell: |
-    chsh -s $(which zsh) vagrant
+    chsh -s $(which zsh) $HOME
     touch .zsh
   when: '"/usr/bin/zsh" not in current_shell.stdout'
 
