@@ -2,6 +2,7 @@
 - name: Clone dotfiles
   become: false
   ansible.builtin.git:
+    force: true
     repo: https://github.com/denmarkgit/.dotfiles
     dest: $HOME/.dotfiles
     version: master
